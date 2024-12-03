@@ -21,6 +21,7 @@
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
+              "@angular/localize/init",
               "zone.js"
             ],
             "tsConfig": "tsconfig.app.json",
@@ -32,9 +33,12 @@
               }
             ],
             "styles": [
+              "node_modules/bootstrap/scss/bootstrap.scss",
               "src/styles.scss"
             ],
-            "scripts": [],
+            "scripts": [
+               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ],
             "server": "src/main.server.ts",
             "prerender": true,
             "ssr": {
@@ -84,6 +88,7 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "polyfills": [
+              "@angular/localize/init",
               "zone.js",
               "zone.js/testing"
             ],
@@ -103,5 +108,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

@@ -1,0 +1,44 @@
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+<!-- <section class="search-bar mb-5 mt-2">
+  <mat-form-field class="w-100">
+    <input matInput type="search" [formControl]="searchControl" class="form-control w-100 py-3 px-5"
+      placeholder="Search for your anime" />
+    <button  class="btn btn-light" matSuffix mat-icon-button aria-label="Search">
+      <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="search"></mat-icon>
+    </button>
+  </mat-form-field>
+</section> -->
+<input
+  type="text"
+  [formControl]="searchControl"
+  class="form-control w-100 py-3 px-3 mt-4 mb-5 "
+  placeholder="Search for your anime"
+/>
+
+<section class="row g-3 d-flex justify-content-center" style="background-color: white;">
+@for (anime of animeList; track $index) {
+  <div class="anime-item col-auto" >
+    <div class="anime-thumbnail-wrapper">
+      <img [src]="anime.images.webp.image_url" class="anime-thumbnail" [alt]="anime.title" />
+    </div>
+    <p class="card-text">{{ anime.title }}</p>
+  </div>
+
+}
+@empty{
+  <p class="text-center text-muted">No results found. Try a different keyword.</p>
+}
+
+</section>
+
+<div class="bg-light p-5 d-flex justify-content-center">
+  <button class="btn btn-primary" [disabled]="currentPage === 1" (click)="previousPage()">
+    Previous
+  </button>
+  <span class="mx-3 d-flex align-items-center">{{ currentPage }}</span>
+  <button class="btn btn-primary" [disabled]="!hasNextPage" (click)="nextPage()">
+    Next
+  </button>
+</div>
